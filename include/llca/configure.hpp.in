@@ -1,0 +1,14 @@
+#ifndef LLCA_CONFIGURE_HPP
+#define	LLCA_CONFIGURE_HPP
+
+#include <string>
+
+namespace llca {
+
+    const std::string PROJECT_BINARY_DIR = "${PROJECT_BINARY_DIR}";
+
+    std::string get_resource(const std::string &relpath) { return PROJECT_BINARY_DIR + "/" + relpath; }
+
+}
+
+#endif
