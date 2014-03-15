@@ -7,6 +7,7 @@
 #include <boost/format.hpp>
 #include <boost/test/unit_test.hpp>
 #include <boost/test/floating_point_comparison.hpp>
+#include <cmath>
 
 #include "llca/configure.hpp"
 #include "llca/kernel.hpp"
@@ -32,7 +33,7 @@ BOOST_AUTO_TEST_CASE(RbfKernel) {
     // Simple and stupid sample for testing whether the data was read in correctly
     BOOST_CHECK_CLOSE(gsl_matrix_get(K, 0, 0), 1.0, 1e-6);
     
-    llca::RbfKernel ker(0.5);
+    llca::RbfKernel ker(std::sqrt(0.5));
     
     for (size_t i = 0; i < X->size1; i++) {
         for (size_t j = 0; j < X->size1; j++) {
@@ -73,7 +74,7 @@ BOOST_AUTO_TEST_CASE(TwoMoons) {
     
     int c = 2;
     llca::Workspace workspace(X.matrix.size1, c);
-    gsl_vector_int *ind_act = llca::cluster(X.matrix, c, 0.1, 10, 0.1, workspace);
+    gsl_vector_int *ind_act = llca::cluster(X.matrix, c, std::sqrt(0.1), 10, 0.1, workspace);
     
     for (size_t i = 0; i < X.matrix.size1; i++) {
         for (size_t j = 0; j < X.matrix.size2; j++) {

@@ -15,11 +15,11 @@ public:
 
 class RbfKernel : public Kernel {
 
-    double sigma_;
+    double sigma_sq_;
 
 public:
 
-    RbfKernel(double sigma) : sigma_(sigma) {}
+    RbfKernel(double sigma) : sigma_sq_(sigma * sigma) {}
 
     double operator()(const gsl_matrix &data, int i, int j) const;
 

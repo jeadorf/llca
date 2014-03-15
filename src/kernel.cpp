@@ -8,5 +8,5 @@ double llca::RbfKernel::operator()(const gsl_matrix &data, int i, int j) const {
         d = gsl_matrix_get(&data, i, k) - gsl_matrix_get(&data, j, k);
         v -= d * d;
     }
-    return exp(v /= sigma_);
+    return exp(v /= sigma_sq_);
 }
